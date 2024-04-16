@@ -1,0 +1,3 @@
+[submodule "web_static/images"]
+	path = web_static/images
+	url = https://github.com/Adeoye1996/images.git
