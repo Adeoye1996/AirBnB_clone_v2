@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Transfers a file from our client to a server
+
+# Variables
+path="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+filename=$(basename "$0")
+brown='\e[0;33m'
+reset='\033[0m'
+
+# Parameters
+file="$1"
+ip="$2"
+user="ubuntu"
+key="$HOME/.ssh/id_rsa"
+
+# Check if all required parameters are provided
+if [ $# -eq 2 ]; then
+    # Transfer file using SCP
+    scp -i "$key" -o StrictHostKeyChecking=no "$path/$file" "$user@$ip:/home/$user/"
+else
+    # Display usage if parameters are missing
+    echo -e "Usage: ${brown}$filename PATH_TO_FILE IP${reset}"
+fi
