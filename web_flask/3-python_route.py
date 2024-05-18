@@ -2,11 +2,14 @@
 """
 Start Flask application.
 
-This script initializes a Flask application and defines three routes:
+This script initializes a Flask application and defines four routes:
 - '/' returns 'Hello HBNB!'
 - '/hbnb' returns 'HBNB'
 - '/c/<text>' returns 'C ' followed by the value of the text variable,
 - with underscores replaced by spaces
+- '/python' or '/python/<text>' returns 'Python ' followed by the,
+- value of the text variable with underscores replaced by spaces,
+- (default is 'is cool')
 """
 
 from flask import Flask
@@ -30,6 +33,14 @@ def hbnb():
 def cisfun(text):
     """Display 'C ' followed by the value of the text variable"""
     return 'C ' + text.replace('_', ' ')
+
+
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def pythoniscool(text='is cool'):
+    """Display 'Python ' followed by the value of 
+       the text variable"""
+    return 'Python ' + text.replace('_', ' ')
 
 
 if __name__ == '__main__':
